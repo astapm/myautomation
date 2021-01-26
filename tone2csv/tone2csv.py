@@ -5,6 +5,10 @@
 # Значения проверяются на корректность
 # Автоматически по умолчанию записывает текущую дату и время
 # TODO сделать ввод через аргументы скрипта
+# TODO реализовать тексты диалогов чеоез list
+# TODO реализовать диалог проверки наличия и создания нового файла
+# TODO сделать в этом местедиалог выхода из скрипта
+
 
 import datetime
 import csv
@@ -135,13 +139,11 @@ def input_valid_string(limit, dialog, dialog_error):
         if valid_lenstr(note, limit) == True:
            x = False
         else:
-            # TODO реализовать тексты диалогов чеоез list
             print("ОШИБКА!", dialog_error, limit, "символов")
     return note
 
 # main
 print("Запись значений давления и пульса в файл mytonecsv.csv\n")
-# TODO реализовать диалог проверки наличия и создания нового файла
 
 y = True
 while y == True:
@@ -153,7 +155,6 @@ while y == True:
     note = input_valid_string(150, dialog6, dialog_error6)
     print("---")
     print("Это правильные значения?")
-    # TODO сделать в этом местедиалог выхода из скрипта
     print("Верхнее давление: ", diastolic)
     print("Нижнее давление: ", systolic)
     print("Пульс: ", pulse)
