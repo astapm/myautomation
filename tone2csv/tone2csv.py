@@ -4,6 +4,10 @@
 # Ввод данных последовательно в диалоговом режиме
 # Значения проверяются на корректность
 # Автоматически по умолчанию записывает текущую дату и время
+
+# ERROR Line 40
+# ERROR Line 54
+
 # TODO сделать ввод через аргументы скрипта
 # TODO реализовать тексты диалогов чеоез list
 # TODO реализовать диалог проверки наличия и создания нового файла
@@ -36,6 +40,7 @@ def valid_date(date_str, format_date):
     '''Проверяет date_str на соответствие формату даты format_date (напр.,"%Y-%m-%d")'''
 
     try:
+        # ERROR AttributeError: module 'datetime' has no attribute 'strptime'
         if date_str != datetime.strptime(date_str,format_date).strftime(format_date):
             raise ValueError
         return True
@@ -46,6 +51,7 @@ def valid_time(time_str, format_time):
     '''Проверяет time_str на соответствие формату времени format_time (напр., "%H:%M")'''
 
     try:
+        # ERROR AttributeError: module 'datetime' has no attribute 'strptime'
         if time_str != datetime.strptime(time_str,format_time).strftime(format_time):
             raise ValueError
         return True
