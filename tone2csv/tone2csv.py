@@ -151,7 +151,7 @@ while y == True:
     systolic = input_valid_digit(40,200,dialog2,dialog_error2)
     pulse = input_valid_digit(30,200,dialog3,dialog_error3)
     date = input_valid_date('%Y-%m-%d', dialog4, dialog_error4)
-    hour = input_valid_date("%H:%M",dialog5, dialog_error5)
+    hour = input_valid_time("%H:%M",dialog5, dialog_error5)
     note = input_valid_string(150, dialog6, dialog_error6)
     print("---")
     print("Это правильные значения?")
