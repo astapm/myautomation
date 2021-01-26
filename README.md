@@ -1,6 +1,4 @@
-# Моя автоматизация
+# Моя автоматизация / Мy automation
 
 **Скрипты и программы для личной автоматизации**
-
-# Мy automation
-Personal automation for me
+**Personal automation for me**
