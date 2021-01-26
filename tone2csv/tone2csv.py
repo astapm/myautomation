@@ -119,10 +119,10 @@ def input_valid_time(format_time, dialog, dialog_error):
         time = input(dialog)
         if time == "":
             dt = datetime.datetime.now()
-            time = dt.strftime(format_date)
+            time = dt.strftime(format_time)
             x = False
         else:
-            if valid_date(date, format_time) == True:
+            if valid_time(time, format_time) == True:
                 x = False
             else:
                 print("ОШИБКА!", time, dialog_error)
