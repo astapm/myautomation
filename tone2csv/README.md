@@ -1,7 +1,7 @@
 # tone2csv.py
 
 **Python-скрипт для записи значений давления и пульса в файл csv**  
-**Python-xcript for writing blood pressure and pulse values to a csv file**
+**Python-script for writing blood pressure and pulse values to a csv file**
 
 Для записи ежедневных измерений артеоиального давления в файл формата csv можно использовать и обычный текстовой редактор. Но даный скрипт на Python позволяет автоматизировать этот процесс.
 
