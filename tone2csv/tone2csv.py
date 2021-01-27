@@ -137,7 +137,7 @@ def input_valid_string(limit, dialog, dialog_error):
 
     x = True
     while x == True:
-        note = input(dialog + str(limit) + " символов: ")
+        note = input(dialog + str(limit) + ": ")
         if valid_lenstr(note, limit) == True:
            x = False
         else:
