@@ -5,16 +5,14 @@
 # Значения проверяются на корректность
 # Автоматически по умолчанию записывает текущую дату и время
 
-# ERROR Line 43
-# ERROR Line 54
-
 # TODO сделать ввод через аргументы скрипта
 # TODO реализовать тексты диалогов чеоез list
 # TODO реализовать диалог проверки наличия и создания нового файла
 # TODO сделать диалог выхода из скрипта
 
 
-import datetime
+from datetime import datetime, date
+import time
 import csv
 
 # Файл для записи данных лавления и пльса
@@ -22,17 +20,17 @@ import csv
 FILENAME = "mytonecsv.csv"
 
 # Cообщения для диалогового интерфейса
-dialog1 = "Введиите диастолическое верхнее давление от 80 до 300: "
+dialog1 = "Введите диастолическое верхнее давление от 80 до 300: "
 dialog_error1 = " -- это некорректное значение для верхнего давления"
-dialog2 = "Введиите систолическое нижнее давление от 40 до 200: "
+dialog2 = "Введите систолическое нижнее давление от 40 до 200: "
 dialog_error2 = " -- некорректное значение для нижнего давления"
-dialog3 = "Введиите пудьс от 30 до 200: "
+dialog3 = "Введите пульс от 30 до 200: "
 dialog_error3 = " -- это некорректное значение для пульса"
-dialog4 = "Введиите дату -- ГГГГ-ММ-ДД (по умолчанию текущая дата): "
+dialog4 = "Введите дату -- ГГГГ-ММ-ДД (по умолчанию текущая дата): "
 dialog_error4 = " -- это некорректное значение для даты"
-dialog5 = "Введиите время -- ЧЧ:ММ (по умолчанию текущее время): "
+dialog5 = "Введите время -- ЧЧ:ММ (по умолчанию текущее время): "
 dialog_error5 = " -- это некорректное значение для времени"
-dialog6 = "Введиите примечание. Лимит символов - "
+dialog6 = "Введите примечание. Лимит символов - "
 dialog_error6 = " -- Строка превысила лимит"
 
 # Функции проверки вводимых числовых значений, даты, времени, длины строки
@@ -103,17 +101,16 @@ def input_valid_date(format_date, dialog, dialog_error):
 
     x = True
     while x == True:
-        date = input(dialog)
-        if date == "":
-            dt = datetime.datetime.now()
-            date = dt.strftime(format_date)
+        date_str = input(dialog)
+        if date_str == "":
+            date_str = date.today() 
             x = False
-        else:
-            if valid_date(date, format_date) == True:
+        else:            
+            if valid_date(date_str, format_date) == True:
                 x = False
             else:
-                print("ОШИБКА!", date, dialog_error)
-    return date
+                print("ОШИБКА!", date_str, dialog_error)
+    return date_str
 
 # Функция для ввода времени и проверки на корректность
 # В случае некорректного значения повторяет ввод
@@ -122,17 +119,16 @@ def input_valid_time(format_time, dialog, dialog_error):
 
     x = True
     while x == True:
-        time = input(dialog)
-        if time == "":
-            dt = datetime.datetime.now()
-            time = dt.strftime(format_time)
+        time_str = input(dialog)
+        if time_str == "":
+            time_str = time.strftime("%H:%M", time.localtime())
             x = False
         else:
-            if valid_time(time, format_time) == True:
+            if valid_time(time_str, format_time) == True:
                 x = False
             else:
-                print("ОШИБКА!", time, dialog_error)
-    return time
+                print("ОШИБКА!", time_str, dialog_error)
+    return time_str
 
 # Функция для ввода текстовой строки и проверки лимита длинны
 # В случае превышения лимита повторяет ввод
