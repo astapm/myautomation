@@ -6,7 +6,7 @@
 # Автоматически по умолчанию записывает текущую дату и время
 
 # TODO сделать ввод через аргументы скрипта
-# TODO реализовать тексты диалогов чеоез list
+# TODO реализовать тексты диалогов чеоез list -- OK
 # TODO реализовать диалог проверки наличия и создания нового файла
 # TODO сделать диалог выхода из скрипта
 
@@ -20,18 +20,18 @@ import csv
 FILENAME = "mytonecsv.csv"
 
 # Cообщения для диалогового интерфейса
-dialog1 = "Введите диастолическое верхнее давление от 80 до 300: "
-dialog_error1 = " -- это некорректное значение для верхнего давления"
-dialog2 = "Введите систолическое нижнее давление от 40 до 200: "
-dialog_error2 = " -- некорректное значение для нижнего давления"
-dialog3 = "Введите пульс от 30 до 200: "
-dialog_error3 = " -- это некорректное значение для пульса"
-dialog4 = "Введите дату -- ГГГГ-ММ-ДД (по умолчанию текущая дата): "
-dialog_error4 = " -- это некорректное значение для даты"
-dialog5 = "Введите время -- ЧЧ:ММ (по умолчанию текущее время): "
-dialog_error5 = " -- это некорректное значение для времени"
-dialog6 = "Введите примечание. Лимит символов - "
-dialog_error6 = " -- Строка превысила лимит"
+dialog1 = ["Введите диастолическое верхнее давление от 80 до 300: ",]
+dialog_error1 = ["ОШИБКА!", "-- это некорректное значение для верхнего давления"]
+dialog2 = ["Введите систолическое нижнее давление от 40 до 200: "]
+dialog_error2 = ["ОШИБКА!", "-- некорректное значение для нижнего давления"]
+dialog3 = ["Введите пульс от 30 до 200: "]
+dialog_error3 = ["ОШИБКА!", "-- это некорректное значение для пульса"]
+dialog4 = ["Введите дату -- ГГГГ-ММ-ДД (по умолчанию текущая дата): "]
+dialog_error4 = ["ОШИБКА!", "-- некорректное значение для даты"]
+dialog5 = ["Введите время -- ЧЧ:ММ (по умолчанию текущее время): "]
+dialog_error5 = ["ОШИБКА!", "-- это некорректное значение для времени"]
+dialog6 = ["Введите примечание. Лимит символов - ", ": "]
+dialog_error6 = ["ОШИБКА!", "Строка превысила лимит", "символов"]
 
 # Функции проверки вводимых числовых значений, даты, времени, длины строки
 def valid_date(date_str, format_date):
@@ -83,15 +83,15 @@ def input_valid_digit(min_digit, max_digit, dialog, dialog_error):
 
     f = True
     while f == True:
-        digit = input(dialog)
+        digit = input(dialog[0])
         if digit.isdigit():
             digit = int(digit)
             if valid_digit(digit, min_digit, max_digit) != True:
-                print("ОШИБКА!",digit,dialog_error)
+                print(dialog_error[0],digit,dialog_error[1])
             else:
                 f = False
         else:
-            print("ОШИБКА!",digit,dialog_error)
+            print(dialog_error[0],digit,dialog_error[1])
     return digit
 
 # Функция для ввода даты и её проверки на корректность
@@ -101,7 +101,7 @@ def input_valid_date(format_date, dialog, dialog_error):
 
     x = True
     while x == True:
-        date_str = input(dialog)
+        date_str = input(dialog[0])
         if date_str == "":
             date_str = date.today() 
             x = False
@@ -109,7 +109,7 @@ def input_valid_date(format_date, dialog, dialog_error):
             if valid_date(date_str, format_date) == True:
                 x = False
             else:
-                print("ОШИБКА!", date_str, dialog_error)
+                print(dialog_error[0], date_str, dialog_error[1])
     return date_str
 
 # Функция для ввода времени и проверки на корректность
@@ -119,7 +119,7 @@ def input_valid_time(format_time, dialog, dialog_error):
 
     x = True
     while x == True:
-        time_str = input(dialog)
+        time_str = input(dialog[0])
         if time_str == "":
             time_str = time.strftime("%H:%M", time.localtime())
             x = False
@@ -127,7 +127,7 @@ def input_valid_time(format_time, dialog, dialog_error):
             if valid_time(time_str, format_time) == True:
                 x = False
             else:
-                print("ОШИБКА!", time_str, dialog_error)
+                print(dialog_error[0], time_str, dialog_error[1])
     return time_str
 
 # Функция для ввода текстовой строки и проверки лимита длинны
@@ -137,11 +137,11 @@ def input_valid_string(limit, dialog, dialog_error):
 
     x = True
     while x == True:
-        note = input(dialog + str(limit) + ": ")
+        note = input(dialog[0] + str(limit) + dialog[1])
         if valid_lenstr(note, limit) == True:
            x = False
         else:
-            print("ОШИБКА!", dialog_error, limit, "символов")
+            print(dialog_error[0], dialog_error[1], limit, dialog_error[2])
     return note
 
 # main
@@ -174,3 +174,4 @@ with open(FILENAME, "a", newline="") as file:
 print("---")
 print("Записано в файл: ",str(date)+";"+str(hour)+";"+str(diastolic)+";"+str(systolic)+";"+str(pulse)+";"+note+";")
 print("Programm terminated normally")
+
