@@ -12,3 +12,13 @@
 ![tone2csv](tone2csv.png)
 
 Скрипт может модифицироваться и под любые другие данные в формате csv
+
+## viewtone.py
+
+**Python-скрипт для просмотра значений давления и пульса из файла csv**  
+**Python script to view blood pressure and pulse values from csv file**
+
+По умолчанию выводятся десять последних записей
+
+---
+GPL 2021
