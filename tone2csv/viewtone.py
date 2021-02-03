@@ -12,19 +12,26 @@
 # TODO Форматирование вывода
 
 import csv
-import os
 
-with open('mytone.csv') as f:
+name_fiile = "mytone.csv"
+csv_delimeter =";"
+num_line_out = 10
+
+with open(name_fiile) as f:
     num_line = (sum(1 for _ in f))
 
-if num_line < 10:
-    with open('mytone.csv', newline='') as File:  
-        reader = csv.reader(File)
+if num_line < num_line_out:
+    with open(name_fiile, newline='') as File:  
+        reader = csv.reader(File, delimiter=csv_delimeter)
         for row in reader:
             print(row[0],row[1],row[2],row[3],row[4],row[5])
 else:
-    r = os.system("tail -n 10 mytone.csv")
-    print(r)
+    count = 0
+    with open(name_fiile, newline='') as File:  
+        reader = csv.reader(File, delimiter=csv_delimeter)
+        for row in reader:
+            if count >= num_line - num_line_out:
+                print(row[0],row[1],row[2],row[3],row[4],row[5])
+            count += 1
 
 print("Programm terminated normally")
- 
