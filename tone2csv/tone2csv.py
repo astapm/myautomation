@@ -96,7 +96,7 @@ def input_valid_date(format_date, dialog, dialog_error):
     while x == True:
         date_str = input(dialog[0])
         if date_str == "":
-            date_str = date.today() 
+            date_str = datetime.today().strftime("%Y-%m-%d") 
             x = False
         else:            
             if valid_date(date_str, format_date) == True:
