@@ -32,7 +32,6 @@ def valid_date(date_str, format_date):
     '''Проверяет date_str на соответствие формату даты format_date (напр.,"%Y-%m-%d")'''
 
     try:
-        # ERROR AttributeError: module 'datetime' has no attribute 'strptime'
         if date_str != datetime.strptime(date_str,format_date).strftime(format_date):
             raise ValueError
         return True
