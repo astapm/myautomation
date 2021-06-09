@@ -21,6 +21,13 @@ from datetime import datetime
 import csv
 import sys
 import argparse
+# Модуль mylib.py.
+# Функции проверки вводимых числовых значений, даты, времени, длины строки
+#    valid_date(date_str, format_date): Проверяет date_str на соответствие формату даты format_date (напр.,"%Y-%m-%d")
+#    valid_time(time_str, format_time): Проверяет time_str на соответствие формату времени format_time (напр., "%H:%M")
+#    valid_lenstr(note_str, max_len):  Проверяет строку note_str на длину max_len
+#    valid_digit(digit, min_digit, max_digit): Проверяет число на соответствие диапазону min_digit - max_digit
+from mylib import valid_date, valid_time, valid_lenstr, valid_digit
 
 # Файл для записи данных лавления и пльса
 # Если файла нет, то он будет создан в текущем каталоге
@@ -32,48 +39,6 @@ FILENAME_ERR = "mytone_err.csv"
 
 # Флаг ввода некорректного параметра
 error_flag = False
-
-# Функции проверки вводимых числовых значений, даты, времени, длины строки
-def valid_date(date_str, format_date):
-    '''Проверяет date_str на соответствие формату даты format_date (напр.,"%Y-%m-%d")'''
-
-    try:
-        # ERROR AttributeError: module 'datetime' has no attribute 'strptime'
-        if date_str != datetime.strptime(date_str,format_date).strftime(format_date):
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
-def valid_time(time_str, format_time):
-    '''Проверяет time_str на соответствие формату времени format_time (напр., "%H:%M")'''
-
-    try:
-        if time_str != datetime.strptime(time_str,format_time).strftime(format_time):
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
-def valid_lenstr(note_str, max_len):
-    '''Проверяет строку note_str на длину max_len'''
-
-    try:
-        if len(note_str) > max_len:
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
-def valid_digit(digit, min_digit, max_digit):
-    '''Проверяет число на соответствие диапазону min_digit - max_digit'''
-
-    try:
-        if digit < min_digit or digit > max_digit:
-            raise ValueError
-        return True
-    except ValueError:
-        return False
 
 def createParser ():
     '''Функция для определения списка параметров командной строки'''

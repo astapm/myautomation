@@ -7,150 +7,60 @@
 
 from datetime import datetime
 import csv
+# Модуль mylib.py.
+# Функции проверки вводимых числовых значений, даты, времени, длины строки
+#    valid_date(date_str, format_date): Проверяет date_str на соответствие формату даты format_date (напр.,"%Y-%m-%d")
+#    valid_time(time_str, format_time): Проверяет time_str на соответствие формату времени format_time (напр., "%H:%M")
+#    valid_lenstr(note_str, max_len):  Проверяет строку note_str на длину max_len
+#    valid_digit(digit, min_digit, max_digit): Проверяет число на соответствие диапазону min_digit - max_digit
+# Функции для ввода данных и проверки на корректность типа данных
+# dialog -- строка-приглашение для ввода данных
+# dialog_error -- строка-вывод о некорректном вводе даннах
+#    input_valid_digit(min_digit, max_digit, dialog, dialog_error): Функция для ввода числа и его проверки на минимум и максимум
+#    input_valid_date(format_date, dialog, dialog_error): Функция для ввода даты в формате "%Y-%m-%d" и её проверки
+#    input_valid_time(format_time, dialog, dialog_error): Функция для ввода времени в формате "%H:%M" и его проверки
+#    input_valid_string(limit, dialog, dialog_error): Функция для ввода текстовой строки длинной не более limit
+from mylib import *
 
-# Файл для записи данных лавления и пльса
+# Имя файл для записи данных давления и пульса
 # Если файла нет, то он будет создан в текущем каталоге
 FILENAME = "mytone.csv"
 
 csv_delimiter = ";"
 
-# Cообщения для диалогового интерфейса.
-start_dialog = "Введите данные:"
-dialog1 = ["Диастолическое верхнее давление (80-300): "]
-dialog_error1 = ["ОШИБКА! {} -- некорректное значение для верхнего давления"]
-dialog2 = ["Систолическое нижнее давление (40-200): "]
-dialog_error2 = ["ОШИБКА! {} -- некорректное значение для нижнего давления"]
-dialog3 = ["Пульс (30-200): "]
-dialog_error3 = ["ОШИБКА! {} -- некорректное значение для пульса"]
-dialog4 = ["Дата -- ГГГГ-ММ-ДД (по умолчанию текущая дата): "]
-dialog_error4 = ["ОШИБКА! {} -- некорректное значение для даты"]
-dialog5 = ["Время -- ЧЧ:ММ (по умолчанию текущее время): "]
-dialog_error5 = ["ОШИБКА! {} -- некорректное значение для времени"]
-dialog6 = ["Примечание к записи. Лимит символов --  {}: "]
-dialog_error6 = ["ОШИБКА! Строка превысила лимит {} символов"]
-
-# Функции проверки вводимых числовых значений, даты, времени, длины строки
-def valid_date(date_str, format_date):
-    '''Проверяет date_str на соответствие формату даты format_date (напр.,"%Y-%m-%d")'''
-
-    try:
-        if date_str != datetime.strptime(date_str,format_date).strftime(format_date):
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
-def valid_time(time_str, format_time):
-    '''Проверяет time_str на соответствие формату времени format_time (напр., "%H:%M")'''
-
-    try:
-        # ERROR AttributeError: module 'datetime' has no attribute 'strptime'
-        if time_str != datetime.strptime(time_str,format_time).strftime(format_time):
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
-def valid_lenstr(note_str, max_len):
-    '''Проверяет строку note_str на длину max_len'''
-
-    try:
-        if len(note_str) > max_len:
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
-def valid_digit(digit, min_digit, max_digit):
-    '''Проверяет число на соответствие диапазону min_digit - max_digit'''
-
-    try:
-        if digit < min_digit or digit > max_digit:
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-    
-# Функция для ввода числовых данных и их проверки на минимум и максимум
-# В случае некорректного значения повторяет ввод
-def input_valid_digit(min_digit, max_digit, dialog, dialog_error):
-    '''Функция для ввода числа и его проверки на минимум и максимум'''
-
-    f = True
-    while f == True:
-        digit = input(dialog[0])
-        if digit.isdigit():
-            digit = int(digit)
-            if valid_digit(digit, min_digit, max_digit) != True:
-                print(dialog_error[0].format(digit))
-            else:
-                f = False
-        else:
-            print(dialog_error[0].format(digit))
-    return digit
-
-# Функция для ввода даты и её проверки на корректность
-# В случае некорректного значения повторяет ввод
-def input_valid_date(format_date, dialog, dialog_error):
-    '''Функция для ввода даты и её проверки'''
-
-    x = True
-    while x == True:
-        date_str = input(dialog[0])
-        if date_str == "":
-            date_str = datetime.today().strftime("%Y-%m-%d") 
-            x = False
-        else:            
-            if valid_date(date_str, format_date) == True:
-                x = False
-            else:
-                print(dialog_error[0].format(date_str))
-    return date_str
-
-# Функция для ввода времени и проверки на корректность
-# В случае некорректного значения повторяет ввод
-def input_valid_time(format_time, dialog, dialog_error):
-    '''Функция для ввода времени и его проверки'''
-
-    x = True
-    while x == True:
-        time_str = input(dialog[0])
-        if time_str == "":
-            time_str = datetime.today().strftime("%H:%M")
-            x = False
-        else:
-            if valid_time(time_str, format_time) == True:
-                x = False
-            else:
-                print(dialog_error[0].format(time_str))
-    return time_str
-
-# Функция для ввода текстовой строки и проверки лимита длинны
-# В случае превышения лимита повторяет ввод
-def input_valid_string(limit, dialog, dialog_error):
-    '''Функция для ввода текстовой строки длинной не более limit'''
-
-    x = True
-    while x == True:
-        note = input(dialog[0].format(str(limit)))
-        if valid_lenstr(note, limit) == True:
-           x = False
-        else:
-            print(dialog_error[0].format(limit))
-    return note
-
 # main
 print("Запись значений давления и пульса в файл {}\n".format(FILENAME))
 
+# Последовательное приглашение ввести данные
 y = True
 while y == True:
-    print(start_dialog)
-    diastolic = input_valid_digit(80,300,dialog1,dialog_error1)
-    systolic = input_valid_digit(40,200,dialog2,dialog_error2)
-    pulse = input_valid_digit(30,200,dialog3,dialog_error3)
-    date = input_valid_date('%Y-%m-%d', dialog4, dialog_error4)
-    hour = input_valid_time("%H:%M",dialog5, dialog_error5)
-    note = input_valid_string(150, dialog6, dialog_error6)
+    print("Введите данные:")
+    diastolic = input_valid_digit(80, 300,
+                                  "Диастолическое верхнее давление (80-300): ",
+                                  "ОШИБКА! {} -- некорректное значение для верхнего давления")
+                                  
+    systolic  = input_valid_digit(40, 200,
+                                  "Систолическое нижнее давление (40-200): ",
+                                  "ОШИБКА! {} -- некорректное значение для нижнего давления")
+                                 
+    pulse   =   input_valid_digit(30, 200,
+                                  "Пульс (30-200): ",
+                                  "ОШИБКА! {} -- некорректное значение для пульса")
+                                  
+    date    =    input_valid_date('%Y-%m-%d',
+                                  "Дата -- ГГГГ-ММ-ДД (по умолчанию текущая дата): ",
+                                  "ОШИБКА! {} -- некорректное значение для даты")
+                                  
+    hour    =    input_valid_time("%H:%M",
+                                  "Время -- ЧЧ:ММ (по умолчанию текущее время): ",
+                                  "ОШИБКА! {} -- некорректное значение для времени")
+                                  
+    note   =   input_valid_string(150,
+                                  "Примечание к записи. Лимит символов --  {}: ",
+                                  "ОШИБКА! Превышен лимит {} символов")
+                                  
+                                  
+                                  
     print("---")
     print("Это правильные значения?")
     print("Верхнее давление: ", diastolic)
@@ -169,5 +79,5 @@ with open(FILENAME, "a", newline="") as file:
 
 print("---")
 print("Записано в файл: ",str(date)+";"+str(hour)+";"+str(diastolic)+";"+str(systolic)+";"+str(pulse)+";"+note+";")
-print("Programm terminated normally")
 
+print("Programm terminated normally")
