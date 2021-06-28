@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Скрипт переводит csv-файл в html-таблицу
+# версия 0.1
+
+nameFileCSV="mytone.csv"
+# nameFileHTML="mytone.html"
+
+echo "<html>"
+echo "<head>"
+echo "  <title>"
+echo "    Перевод csv-файла $nameFileCSV в таблицу html"
+echo "  </title>"
+echo "</head>"
+echo "<body>"
+
+echo "<table>"
+IFS=$'\n'
+for var in $(cat $nameFileCSV)
+  do
+  echo "<tr>"
+  IFS=$";"
+    for dt in ${var[*]}
+    do
+    echo "<td>"
+    echo $dt
+    echo "</td>"
+    done
+  echo "</tr>"
+  done
+echo "</table>"
+
+echo "</body>"
+echo "</html>"
