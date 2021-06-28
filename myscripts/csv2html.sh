@@ -2,7 +2,7 @@
 
 # Скрипт переводит csv-файл в html-таблицу
 
-nameFileCSV="mytone.csv"
+nameFileCSV="mycsv.csv"
 # nameFileHTML="mytone.html"
 CSVseparator=";"
 
