@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Скрипт переводит csv-файл в html-таблицу
-# версия 0.1
 
 nameFileCSV="mytone.csv"
 # nameFileHTML="mytone.html"
+CSVseparator=";"
 
 echo "<html>"
 echo "<head>"
@@ -19,7 +19,7 @@ IFS=$'\n'
 for var in $(cat $nameFileCSV)
   do
   echo "<tr>"
-  IFS=$";"
+  IFS=$CSVseparator
     for dt in ${var[*]}
     do
     echo "<td>"
