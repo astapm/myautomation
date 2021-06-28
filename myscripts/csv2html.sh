@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Скрипт переводит csv-файл в html-таблицу
+# Скрипт переводит csv-файл `nameFileCSV` в html-таблицу
 
 nameFileCSV="mycsv.csv"
 # nameFileHTML="mytone.html"
