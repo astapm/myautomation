@@ -20,10 +20,10 @@ for var in $(cat $nameFileCSV)
   do
   echo "<tr>"
   IFS=$CSVseparator
-    for dt in ${var[*]}
+    for td in ${var[*]}
     do
     echo "<td>"
-    echo $dt
+    echo $td
     echo "</td>"
     done
   echo "</tr>"
