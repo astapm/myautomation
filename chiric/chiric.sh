@@ -16,9 +16,8 @@ read -n 140 -p "Чик-чирик: " note
 # Есои заметка не пустая, записываем в файл дату и  заметку
 if [[ $note != "" ]]
 then
-  echo -n $(date +"%m-%d-%Y") ";" >> $file_csv
+  echo -n $(date +"%m-%d-%Y")";" >> $file_csv
   echo $note >> $file_csv
-  echo >> $file_csv # новая строка
   echo "Записано в $file_csv"
 else
   exit
