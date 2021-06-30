@@ -17,9 +17,9 @@ do
   count=0
   printf "|"
   for var in ${row[*]}
-    do
+  do
     printf "${table_format[$count]} |" $var
     count=$(($count + 1))
   done
-printf "\n"
+  printf "\n"
 done
