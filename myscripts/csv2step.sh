@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Скрипт переводит csv-файл в таблицу-лесенку
+# Скрипт выврдит csv-файл nameFileCSV в таблицу-лесенку
 
 nameFileCSV="mycsv.csv"
 prefix=" "
