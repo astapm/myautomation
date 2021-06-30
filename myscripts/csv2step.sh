@@ -2,8 +2,6 @@
 
 # Скрипт выврдит csv-файл nameFileCSV в таблицу-лесенку
 
-
-# МОДИФИЦИРОВАТЬ ЭТИ ПЕРЕМЕННЫЕ
 nameFileCSV="mycsv.csv"
 prefix=" "
 CSVseparator=";"
