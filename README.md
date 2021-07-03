@@ -7,4 +7,4 @@ Personal automation for me**
 
 * **["Чирк"](chirc)** -- очень простой скрипт "Блокнот" на Bash для текстовых заметок в csv-файл / "Chiriс" is a very simple notepad script for text notes in a csv file
 
-* **[Разные вспомогательные скрипты](myscripts)** -- дополнительные скрипты автоматизации / additional automation scripts
+* **[Вспомогательные скрипты](myscripts)** -- дополнительные скрипты автоматизации / additional automation scripts
