@@ -38,7 +38,7 @@ then
   else
     # заменяем в заметке `;` на `\u003B` и `"` на `'`, если есть,
     note=${note//\"/\'}
-    note=${note//;/\\u003B}
+    note=${note//$sep/\\u003B}
     # Записываем строку в файл
     echo -n $(date +"%m-%d-%Y")$sep >> $file_csv
     echo "\"$note\"" >> $file_csv
