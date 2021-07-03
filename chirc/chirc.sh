@@ -15,7 +15,7 @@ file_csv="mynotes.csv"
 sep=";"
 
 # Для начала выводим небольшую статистику о заметках
-if [ -е $file_csv ]
+if [[ -e $file_csv ]]
 then
 echo "Кол-во заметок: $(wc -l < $file_csv)"
 fi
