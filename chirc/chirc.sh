@@ -35,7 +35,7 @@ then
   # добавляя текущую дату
   else
     echo -n $(date +"%m-%d-%Y")$sep >> $file_csv
-    echo $note >> $file_csv
+    echo "\"$note\"" >> $file_csv
     echo "Записано в $file_csv"
   fi
 else
