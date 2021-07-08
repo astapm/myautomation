@@ -20,7 +20,6 @@ checkFormatCSV(){
   #temp=${temp//"\n"/"\u000A"}
   echo ${temp}
 }
-#------------
 
 #Пример использования
 separatorCSV=";"              # разделитель CSV
