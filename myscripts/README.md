@@ -119,7 +119,7 @@ $ ./csv2table.sh
 Скрипт содержит объявление функции `checkDigit` и пример её использования
 
 
-### [checkLenStr.sh](checkLenStr.sh)
+### [checkLenStr.sh](checkLimStr.sh)
 
 **checkLenStr** -- это примерная функция Bash для проверки длины строки
 
