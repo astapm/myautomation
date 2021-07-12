@@ -49,7 +49,7 @@ then
   # то ищем введённый текст через `grep` в `file_csv`
   if [[ ${note:0:1} == "/" ]]
   then
-    grep -n " ${note:1}" $file_csv
+    grep -n "${note:1}" $file_csv
   # Или записываем введённый текст в файл csv,
   # добавляя текущую дату
   else
